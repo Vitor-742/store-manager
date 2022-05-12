@@ -10,7 +10,18 @@ const showProductsById = async (id) => {
     return product;
 };
 
+const createProduct = async (name, quantity) => {
+    const product = await productModel.createProduct(name, quantity);
+    // criar obj
+    return {
+        id: product.insertId,
+        name,
+        quantity,
+    };
+};
+
 module.exports = {
     showProducts,
     showProductsById,
+    createProduct,
 };

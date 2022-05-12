@@ -22,7 +22,7 @@ app.get('/sales', sales.showSales);
 
 app.get('/sales/:id', sales.showSalesById);
 
-app.post('/products', validateProducts);
+app.post('/products', validateProducts, product.createProduct);
 
 app.post('/sales', validateSales);
 
