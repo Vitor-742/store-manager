@@ -28,9 +28,14 @@ const upgradeProduct = async (id, name, quantity) => {
     };
 };
 
+const deleteProduct = async (id) => {
+    await productModel.deleteProduct(id);
+};
+
 module.exports = {
     showProducts,
     showProductsById,
     createProduct,
     upgradeProduct,
+    deleteProduct,
 };

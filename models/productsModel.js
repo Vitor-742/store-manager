@@ -52,6 +52,14 @@ const productExist = async (id) => {
     return true;
 };
 
+const deleteProduct = async (id) => {
+    await connection.execute(
+        `DELETE FROM StoreManager.products
+        WHERE id = ?`,
+        [id],
+    );
+};
+
 module.exports = {
     showProducts,
     showProductsById,
@@ -59,4 +67,5 @@ module.exports = {
     createProduct,
     upgradeProduct,
     productExist,
+    deleteProduct,
 };
