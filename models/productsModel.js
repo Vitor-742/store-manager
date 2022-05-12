@@ -32,9 +32,31 @@ const createProduct = async (name, quantity) => {
     return result;
 };
 
+const upgradeProduct = async (id, name, quantity) => {
+    const [result] = await connection.execute(
+        `UPDATE StoreManager.products
+        SET name = ?, quantity = ?
+        WHERE id = ?`,
+        [name, quantity, id],
+    );
+    return result;
+};
+
+const productExist = async (id) => {
+    const [result] = await connection.execute(
+        `SELECT * FROM StoreManager.products
+        WHERE id = ?`,
+        [id],
+    );
+    if (result.length === 0) return false;
+    return true;
+};
+
 module.exports = {
     showProducts,
     showProductsById,
     alreadyExistProduct,
     createProduct,
+    upgradeProduct,
+    productExist,
 };

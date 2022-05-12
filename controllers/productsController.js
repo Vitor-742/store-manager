@@ -22,8 +22,18 @@ const createProduct = async (req, res) => {
     res.status(201).json(product);
 };
 
+const upgradeProduct = async (req, res) => {
+    const { id } = req.params;
+    const { name, quantity } = req.body;
+    const productExist = await productModel.productExist(id);
+    if (!productExist) return res.status(404).json({ message: 'Product not found' });
+    const newProduct = await productService.upgradeProduct(id, name, quantity);
+    res.status(200).json(newProduct);
+};
+
 module.exports = {
     showProducts,
     showProductsById,
     createProduct,
+    upgradeProduct,
 };
