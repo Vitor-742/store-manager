@@ -21,7 +21,13 @@ const showSalesById = async (id) => {
     return newSales;
 };
 
+const createSale = async (sale) => {
+    const itemSale = await salesModel.createSale(sale);
+    return itemSale;
+};
+
 module.exports = {
     showSales,
     showSalesById,
+    createSale,
 };

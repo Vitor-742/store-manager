@@ -21,7 +21,28 @@ const showSalesById = async (id) => {
     ); return result;
 };
 
+const createSale = async (sales) => {
+    const date = new Date().toISOString().slice(0, 19).replace('T', ' ');
+    const [salesTable] = await connection.execute(
+        'INSERT INTO StoreManager.sales (date) VALUES (?)',
+        [date],
+    );
+    const id = salesTable.insertId;
+    sales.forEach(async ({ productId, quantity }) => {
+        await connection.execute(
+            `INSERT INTO StoreManager.sales_products (sale_id, product_id, quantity) 
+            VALUES (?, ?, ?)`,
+            [id, productId, quantity],
+        );
+    });
+    return {
+        id,
+        itemsSold: sales,
+    };
+};
+
 module.exports = {
     showSales,
     showSalesById,
+    createSale,
 };

@@ -24,9 +24,9 @@ app.get('/sales/:id', sales.showSalesById);
 
 app.post('/products', validateProducts, product.createProduct);
 
-app.post('/sales', validateSales);
+app.post('/sales', validateSales, sales.createSale);
 
-app.put('/products/:id', product.upgradeProduct);
+app.put('/products/:id', validateProducts, product.upgradeProduct);
 
 app.delete('/products/:id', product.deleteProduct);
 
