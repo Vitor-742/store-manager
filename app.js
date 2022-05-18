@@ -30,6 +30,8 @@ app.put('/products/:id', validateProducts, product.upgradeProduct);
 
 app.delete('/products/:id', product.deleteProduct);
 
+app.put('/sales/:id', sales.updateSale);
+
 // não remova essa exportação, é para o avaliador funcionar
 // você pode registrar suas rotas normalmente, como o exemplo acima
 // você deve usar o arquivo index.js para executar sua aplicação 

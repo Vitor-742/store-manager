@@ -41,8 +41,19 @@ const createSale = async (sales) => {
     };
 };
 
+const updateSale = async (/* id, productId, quantity */) => { // product_id provavel problema
+    /* const [result] = await connection.execute(
+        `UPDATE StoreManager.sales_products
+        SET product_id = ?, quantity = ?
+        WHERE sale_id = ?`,
+        [productId, quantity, id],
+    );
+    return result; */
+};
+
 module.exports = {
     showSales,
     showSalesById,
     createSale,
+    updateSale,
 };
