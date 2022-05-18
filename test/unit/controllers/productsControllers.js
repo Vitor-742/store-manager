@@ -1,9 +1,9 @@
 const { expect } = require('chai');
-const { mock } = require('sinon');
 const sinon = require('sinon')
 
 const productsController = require('../../../controllers/productsController')
 const productService = require('../../../services/productsService')
+const productModel = require('../../../models/productsModel')
 
 describe('Testa o productsController', () => {
     describe('Testa o showProducts', () => {
@@ -38,10 +38,12 @@ describe('Testa o productsController', () => {
             response.send = sinon.stub().returns();
     
             sinon.stub(productService, "deleteProduct").resolves(true);
+            sinon.stub(productModel, "productExist").resolves(true);
         });
 
         after(() => {
             productService.deleteProduct.restore();
+            productModel.productExist.restore();
         });
 
         it('quando a requisicao e feita para deleteProduct', async() => {
@@ -71,10 +73,12 @@ describe('Testa o productsController', () => {
             response.send = sinon.stub().returns();
     
             sinon.stub(productService, "upgradeProduct").resolves(mockUpgrade);
+            sinon.stub(productModel, "productExist").resolves(true);
         });
 
         after(() => {
             productService.upgradeProduct.restore();
+            productModel.productExist.restore();
         });
 
         it('quando a requisicao e feita para upgradeProduct', async() => {
