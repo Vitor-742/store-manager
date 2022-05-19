@@ -1,6 +1,6 @@
 const connection = require('./connection');
 
-const showSales = async () => { // mudar oq e retornado para o formato certo 
+const showSales = async () => {
     const [result] = await connection.execute(
         `SELECT salpro.sale_id, sales.date, salpro.product_id, salpro.quantity 
         FROM StoreManager.sales_products AS salpro
