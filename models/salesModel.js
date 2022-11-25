@@ -22,7 +22,6 @@ const showSalesById = async (id) => {
 };
 
 const createSale = async (sales) => {
-    const date = new Date().toISOString().slice(0, 19).replace('T', ' ');
     const [salesTable] = await connection.execute(
         'INSERT INTO StoreManager.sales (date) VALUES (?)',
         [date],
